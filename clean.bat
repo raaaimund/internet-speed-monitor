@@ -1,0 +1,4 @@
+docker-compose down
+docker volume rm teletronictester_grafana-storage
+docker volume rm teletronictester_influxdb-storage
+docker volume rm teletronictester_speedtest-storage

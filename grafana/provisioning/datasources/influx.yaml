@@ -1,0 +1,30 @@
+apiVersion: 1
+
+# list of datasources to insert/update depending
+# what's available in the database
+datasources:
+  # <string, required> name of the datasource. Required
+- name: InfluxDB
+  # <string, required> datasource type. Required
+  type: influxdb
+  # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
+  access: proxy
+  # <string> url
+  url: http://influxdb:8086
+  # <string> database user, if used
+  user: ${INFLUXDB_USERNAME}
+  # <string> database name, if used
+  database: speedtest
+  # <bool> mark as default datasource. Max one per org
+  isDefault: true
+  # <map> fields that will be converted to json and stored in jsonData
+  jsonData:
+    timeInterval: "10s"
+  # version?
+  version: 1
+  # <bool> allow users to edit datasources from the UI.
+  editable: true
+  # <string> json object of data that will be encrypted.
+  secureJsonData:
+    # <string> database password, if used
+    password: ${INFLUXDB_PASSWORD}

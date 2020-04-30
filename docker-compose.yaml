@@ -1,0 +1,37 @@
+version: '3'
+services: 
+    influxdb:
+        image: influxdb:1.7-alpine
+        ports:
+            - '8086:8086'
+        volumes:
+            - influxdb-storage:/var/lib/influxdb
+        environment:
+            - INFLUXDB_DB=${INFLUXDB_DB}
+            - INFLUXDB_ADMIN_USER=${INFLUXDB_USERNAME}
+            - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD}
+    speedtester:
+        build: 'speedtest/.'
+        volumes:
+            - speedtest-storage:/usr/speedtest
+        depends_on: 
+            - "influxdb"
+    telegraf:
+        build: 'telegraf/.'
+        volumes:
+            - speedtest-storage:/usr/speedtest
+            - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+        depends_on: 
+            - "influxdb"
+    grafana:
+        build: 'grafana/.'
+        ports:
+            - "3000:3000"
+        volumes:
+            - grafana-storage:/var/lib/grafana
+        environment:
+            - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL}
+volumes:
+    influxdb-storage:
+    speedtest-storage:
+    grafana-storage:
