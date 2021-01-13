@@ -15,7 +15,7 @@ services:
     speedtester:
         build: 'speedtest/.'
         volumes:
-            - speedtest-storage:/usr/speedtest
+            - speedtest-storage:/var/log/speedtest
         depends_on: 
             - "influxdb"
         networks:
@@ -23,7 +23,7 @@ services:
     telegraf:
         build: 'telegraf/.'
         volumes:
-            - speedtest-storage:/usr/speedtest
+            - speedtest-storage:/var/log/speedtest
             - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
         depends_on: 
             - "influxdb"

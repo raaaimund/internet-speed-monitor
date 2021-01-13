@@ -13,10 +13,10 @@ Docker starts the following services
 * influxdb
     * store for our speed test results
 * speedtester
-    * schedules a cron job for running a speed test using the [speedtest.net cli][6] every five minutes and appends the results to a csv file
+    * schedules a cron job for running a speed test using the official [speedtest.net cli][6] every five minutes to JSON log files
     * you can change the specified server and interval in the corresponding [Dockerfile][7]
 * telegraf
-    * reads the tail of the csv file with the results and sends them to influxdb
+    * reads the JSON logs with the results and sends them to influxdb
 * grafana
     * visualises our results on a simple preconfigured dashboard
     * default credentials are admin:admin

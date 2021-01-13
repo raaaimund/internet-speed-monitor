@@ -1,7 +1,5 @@
-FROM python:3-alpine
-WORKDIR /usr/speedtest
-RUN pip install --no-cache-dir speedtest-cli && \
-    speedtest-cli --csv-header > speedtest-results.csv && \
-    # server 3744 - Nessus GmbH (10G Uplink) (Vienna, Austria)
-    echo "*/5 * * * * speedtest-cli --server 3744 --secure --csv >> /usr/speedtest/speedtest-results.csv" > /etc/crontabs/root
+FROM alpine
+RUN wget -O - https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-x86_64-linux.tgz | tar x -f - -z -C /usr/local/bin/ && \
+    # server 5025 - AT&T (Cicero, IL)
+    echo "*/15 * * * * /usr/local/bin/speedtest --accept-license -s 5025 -f json > \$(mktemp -u -p /var/log/speedtest XXXXXX).json" > /etc/crontabs/root
 CMD ["crond", "-f", "-d", "8"]
