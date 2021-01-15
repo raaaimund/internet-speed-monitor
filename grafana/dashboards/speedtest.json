@@ -2,7 +2,6 @@
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:60",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -13,11 +12,10 @@
       }
     ]
   },
-  "description": "with speedtest.net",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 3,
   "links": [],
   "panels": [
     {
@@ -25,12 +23,12 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
-        "w": 24,
+        "h": 9,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -49,7 +47,12 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "dataLinks": [
+          {
+            "title": "",
+            "url": ""
+          }
+        ]
       },
       "percentage": false,
       "pointradius": 2,
@@ -61,30 +64,52 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "",
+          "alias": "Download",
           "groupBy": [],
-          "measurement": "tail",
+          "measurement": "file",
           "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"Download\", \"Upload\" FROM \"tail\" WHERE $timeFilter",
-          "rawQuery": false,
+          "policy": "autogen",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "Download"
+                  "download_bandwidth"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [
+                  " / 125000"
+                ],
+                "type": "math"
               }
-            ],
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Upload",
+          "groupBy": [],
+          "measurement": "file",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
             [
               {
                 "params": [
-                  "Upload"
+                  "upload_bandwidth"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [
+                  " / 125000"
+                ],
+                "type": "math"
               }
             ]
           ],
@@ -101,7 +126,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -112,22 +136,22 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:111",
-          "format": "decbytes",
-          "label": "Speed",
+          "decimals": null,
+          "format": "Mbits",
+          "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1000",
+          "min": "0",
           "show": true
         },
         {
-          "$$hashKey": "object:112",
-          "format": "short",
-          "label": null,
+          "decimals": null,
+          "format": "Mbits",
+          "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+          "max": "1000",
+          "min": "0",
+          "show": false
         }
       ],
       "yaxis": {
@@ -162,9 +186,9 @@
   },
   "timezone": "",
   "title": "Speedtest",
-  "uid": "gD_xRveZz",
+  "uid": "Kkn5okfGz",
   "variables": {
     "list": []
   },
-  "version": 3
+  "version": 1
 }
