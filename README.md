@@ -21,6 +21,10 @@ Docker starts the following services
     * visualises our results on a simple preconfigured dashboard
     * default credentials are admin:admin
 
+## Change speedtest server
+
+Change the value of the ``-s`` argument in the [.env](./speedtest/Dockerfile) file to alter the server on which to perform the speed test. You can list nearby servers with ``speedtest -L``.
+
 [1]: https://www.speedtest.net/
 [2]: https://grafana.com/
 [3]: https://www.influxdata.com/time-series-platform/telegraf/
