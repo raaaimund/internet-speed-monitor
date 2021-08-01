@@ -2,6 +2,12 @@
 
 with [speedtest.net][1], [Grafana][2], [Telegraf][3], [InfluxDB][4] and [Docker][5].
 
+Original https://github.com/raaaimund/internet-speed-monitor was outdated, and several thing didn´t work anymore.
+Fixed them.
+
+Thanks raaaimund for the great setup! Just had to fix some dependencies of yours!
+
+
 After running 
 
 ```
