@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:7",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -15,7 +16,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "panels": [
     {
@@ -75,13 +75,13 @@
             [
               {
                 "params": [
-                  "download_bandwidth"
+                  "download"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  " / 125000"
+                  " / 1000000"
                 ],
                 "type": "math"
               }
@@ -101,13 +101,13 @@
             [
               {
                 "params": [
-                  "upload_bandwidth"
+                  "upload"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  " / 125000"
+                  " / 1000000"
                 ],
                 "type": "math"
               }
