@@ -140,7 +140,7 @@
           "format": "Mbits",
           "label": "",
           "logBase": 1,
-          "max": "1000",
+          "max": "200",
           "min": "0",
           "show": true
         },
@@ -149,7 +149,7 @@
           "format": "Mbits",
           "label": "",
           "logBase": 1,
-          "max": "1000",
+          "max": "200",
           "min": "0",
           "show": false
         }
