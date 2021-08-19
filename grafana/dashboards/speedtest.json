@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:45",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -15,7 +16,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
   "links": [],
   "panels": [
     {
@@ -81,7 +81,7 @@
               },
               {
                 "params": [
-                  " / 125000"
+                  "*8/1000000"
                 ],
                 "type": "math"
               }
@@ -107,7 +107,7 @@
               },
               {
                 "params": [
-                  " / 125000"
+                  "*8/1000000"
                 ],
                 "type": "math"
               }
@@ -136,6 +136,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:142",
           "decimals": null,
           "format": "Mbits",
           "label": "",
@@ -145,6 +146,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:143",
           "decimals": null,
           "format": "Mbits",
           "label": "",
@@ -167,7 +169,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
