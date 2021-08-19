@@ -1,4 +1,4 @@
 docker-compose down
-docker volume rm teletronictester_grafana-storage
-docker volume rm teletronictester_influxdb-storage
-docker volume rm teletronictester_speedtest-storage
+docker volume rm internet-speed-monitor_grafana-storage
+docker volume rm internet-speed-monitor_influxdb-storage
+docker volume rm internet-speed-monitor_speedtest-storage

@@ -2,7 +2,7 @@
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:7",
+        "$$hashKey": "object:45",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -75,13 +75,13 @@
             [
               {
                 "params": [
-                  "download"
+                  "download_bandwidth"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  " / 1000000"
+                  "*8/1000000"
                 ],
                 "type": "math"
               }
@@ -101,13 +101,13 @@
             [
               {
                 "params": [
-                  "upload"
+                  "upload_bandwidth"
                 ],
                 "type": "field"
               },
               {
                 "params": [
-                  " / 1000000"
+                  "*8/1000000"
                 ],
                 "type": "math"
               }
@@ -136,20 +136,22 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:142",
           "decimals": null,
           "format": "Mbits",
           "label": "",
           "logBase": 1,
-          "max": "200",
+          "max": "1000",
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:143",
           "decimals": null,
           "format": "Mbits",
           "label": "",
           "logBase": 1,
-          "max": "200",
+          "max": "1000",
           "min": "0",
           "show": false
         }
@@ -167,7 +169,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
