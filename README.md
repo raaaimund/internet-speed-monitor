@@ -2,11 +2,10 @@
 
 with [speedtest.net][1], [Grafana][2], [Telegraf][3], [InfluxDB][4] and [Docker][5].
 
-Original https://github.com/raaaimund/internet-speed-monitor was outdated, and several thing didn´t work anymore.
-Fixed them.
+Original https://github.com/raaaimund/internet-speed-monitor was outdated, and several things didn´t work anymore.
+Fixed them. Thanks to @raaaimund for the great setup! Just had to fix some dependencies of yours!
 
-Thanks raaaimund for the great setup! Just had to fix some dependencies of yours!
-
+This project is fixed to the ``x86`` architecture.
 
 After running 
 
@@ -17,15 +16,15 @@ docker-compose up
 Docker starts the following services
 
 * influxdb
-    * store for our speed test results
+    * store for the speed test results
 * speedtester
     * schedules a cron job for running a speed test using the official [speedtest.net cli][6] every five minutes to JSON log files
     * you can change the specified server and interval in the corresponding [Dockerfile][7]
 * telegraf
     * reads the JSON logs with the results and sends them to influxdb
 * grafana
-    * visualises our results on a simple preconfigured dashboard
-    * default credentials are admin:admin
+    * visualizes the results on a simple pre-configured dashboard
+    * default credentials are **admin:admin**
 
 ## Change speedtest server
 
