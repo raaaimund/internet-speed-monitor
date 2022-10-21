@@ -13,7 +13,11 @@ services:
         networks:
             - speedtest
     speedtester:
-        build: 'speedtest/.'
+        build:
+            context: speedtest
+            args:
+                - SPEEDTEST_CRON_SCHEDULE=${SPEEDTEST_CRON_SCHEDULE}
+                - SPEEDTEST_SERVER=${SPEEDTEST_SERVER}
         volumes:
             - speedtest-storage:/var/log/speedtest
         depends_on: 
