@@ -26,9 +26,11 @@ Docker starts the following services
     * visualizes the results on a simple pre-configured dashboard
     * default credentials are **admin:admin**
 
-## Change speedtest server
+## Change speedtest server and cron schedule
 
-Change the value of the ``-s`` argument in the [.env](./speedtest/Dockerfile) file to alter the server on which to perform the speed test. You can list nearby servers with ``speedtest -L``.
+Change the value of the ``SPEEDTEST_SERVER`` and ``SPEEDTEST_CRON_SCHEDULE`` arguments in the [.env](.env) file to alter the server on which to perform the speed test. You can list servers with ``speedtest -L``. The default values are ``SPEEDTEST_SERVER=3199`` and ``SPEEDTEST_CRON_SCHEDULE="*/1 * * * *"``.
+
+Thanks to @timokluser-dev for this PR.
 
 [1]: https://www.speedtest.net/
 [2]: https://grafana.com/
