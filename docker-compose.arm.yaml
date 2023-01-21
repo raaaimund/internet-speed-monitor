@@ -1,0 +1,12 @@
+version: '3'
+services: 
+
+    influxdb:
+        image: influxdb:1.8.10
+        privileged: true
+
+    telegraf:
+        build: 
+            context: telegraf/.
+            args:
+                DOCKERIZE_ARCH: armhf

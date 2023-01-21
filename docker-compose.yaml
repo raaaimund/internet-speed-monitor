@@ -25,7 +25,11 @@ services:
         networks:
             - speedtest
     telegraf:
-        build: 'telegraf/.'
+        build:
+            context: 'telegraf/.'
+            args:
+                DOCKERIZE_VERSION: v0.6.1
+                DOCKERIZE_ARCH: amd64
         volumes:
             - speedtest-storage:/var/log/speedtest
             - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf

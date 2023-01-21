@@ -5,8 +5,6 @@ with [speedtest.net][1], [Grafana][2], [Telegraf][3], [InfluxDB][4] and [Docker]
 Original https://github.com/raaaimund/internet-speed-monitor was outdated, and several things didn´t work anymore.
 Fixed them. Thanks to @raaaimund for the great setup! Just had to fix some dependencies of yours!
 
-This project is fixed to the ``x86`` architecture.
-
 After running 
 
 ```
@@ -19,7 +17,7 @@ Docker starts the following services
     * store for the speed test results
 * speedtester
     * schedules a cron job for running a speed test using the official [speedtest.net cli][6] every five minutes to JSON log files
-    * you can change the specified server and interval in the corresponding [Dockerfile][7]
+    * you can change the specified server and interval in the corresponding [Dockerfile][7].
 * telegraf
     * reads the JSON logs with the results and sends them to influxdb
 * grafana
@@ -30,6 +28,15 @@ Docker starts the following services
 
 Change the value of the ``SPEEDTEST_SERVER`` and ``SPEEDTEST_CRON_SCHEDULE`` arguments in the [.env](.env) file to alter the server on which to perform the speed test. You can list servers with ``speedtest -L``. The default values are ``SPEEDTEST_SERVER=3199`` and ``SPEEDTEST_CRON_SCHEDULE="*/1 * * * *"``.
 
+## ARM
+
+I used a Raspberry Pi 3B+ with [Hypriot][8] for running the internet speed monitor.
+To run this on a device with an ARM architecture (e.g. Raspberry Pi) run the following command
+
+```bash
+docker-compose -f docker-compose.yaml -f docker-compose.arm.yaml up
+```
+
 Thanks to @timokluser-dev for this PR.
 
 [1]: https://www.speedtest.net/
@@ -39,3 +46,4 @@ Thanks to @timokluser-dev for this PR.
 [5]: https://www.docker.com/
 [6]: https://www.speedtest.net/apps/cli
 [7]: speedtest/Dockerfile
+[8]: https://blog.hypriot.com/
