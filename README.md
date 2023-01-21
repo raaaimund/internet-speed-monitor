@@ -28,6 +28,8 @@ Docker starts the following services
 
 Change the value of the ``SPEEDTEST_SERVER`` and ``SPEEDTEST_CRON_SCHEDULE`` arguments in the [.env](.env) file to alter the server on which to perform the speed test. You can list servers with ``speedtest -L``. The default values are ``SPEEDTEST_SERVER=3199`` and ``SPEEDTEST_CRON_SCHEDULE="*/1 * * * *"``.
 
+Thanks to @timokluser-dev for this PR.
+
 ## ARM
 
 I used a Raspberry Pi 3B+ with [Hypriot][8] for running the internet speed monitor.
@@ -36,8 +38,6 @@ To run this on a device with an ARM architecture (e.g. Raspberry Pi) run the fol
 ```bash
 docker-compose -f docker-compose.yaml -f docker-compose.arm.yaml up
 ```
-
-Thanks to @timokluser-dev for this PR.
 
 [1]: https://www.speedtest.net/
 [2]: https://grafana.com/
