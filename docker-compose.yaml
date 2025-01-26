@@ -1,4 +1,3 @@
-version: '3'
 services: 
     influxdb:
         image: influxdb:1.8-alpine
@@ -12,18 +11,6 @@ services:
             - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD}
         networks:
             - speedtest
-    speedtester:
-        build:
-            context: speedtest
-            args:
-                - SPEEDTEST_CRON_SCHEDULE=${SPEEDTEST_CRON_SCHEDULE}
-                - SPEEDTEST_SERVER=${SPEEDTEST_SERVER}
-        volumes:
-            - speedtest-storage:/var/log/speedtest
-        depends_on: 
-            - "influxdb"
-        networks:
-            - speedtest
     telegraf:
         build:
             context: 'telegraf/.'
@@ -31,8 +18,10 @@ services:
                 DOCKERIZE_VERSION: v0.6.1
                 DOCKERIZE_ARCH: amd64
         volumes:
-            - speedtest-storage:/var/log/speedtest
             - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+        environment:
+            - SPEEDTEST_INTERVAL=${SPEEDTEST_INTERVAL}
+            - SPEEDTEST_SERVER=${SPEEDTEST_SERVER}
         depends_on: 
             - "influxdb"
         networks:
@@ -53,5 +42,4 @@ networks:
 
 volumes:
     influxdb-storage:
-    speedtest-storage:
     grafana-storage:

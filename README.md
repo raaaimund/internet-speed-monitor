@@ -2,33 +2,29 @@
 
 with [speedtest.net][1], [Grafana][2], [Telegraf][3], [InfluxDB][4] and [Docker][5].
 
-Original https://github.com/raaaimund/internet-speed-monitor was outdated, and several things didn´t work anymore.
-Fixed them. Thanks to @raaaimund for the great setup! Just had to fix some dependencies of yours!
+After running
 
-After running 
-
-```
+```bash
 docker-compose up
 ```
 
 Docker starts the following services
 
-* influxdb
-    * store for the speed test results
-* speedtester
-    * schedules a cron job for running a speed test using the official [speedtest.net cli][6] every five minutes to JSON log files
-    * you can change the specified server and interval in the corresponding [Dockerfile][7].
-* telegraf
-    * reads the JSON logs with the results and sends them to influxdb
-* grafana
-    * visualizes the results on a simple pre-configured dashboard
-    * default credentials are **admin:admin**
+* ``influxdb``
+  * store for the speed test results
+* ``telegraf``
+  * runs speed tests using the official [speedtest.net cli][6] every five minutes using the [exec input plugin][9]
+  * sends the result to influxdb using the [influxdb output plugin][12]
+* ``grafana``
+  * visualizes the results on a simple pre-configured dashboard
+  * default credentials are **admin:admin**
+  * dashboad is available on <http://localhost:3000/d/speedtest/speedtest>
 
-## Change speedtest server and cron schedule
+## Adapt speedtest configuration
 
-Change the value of the ``SPEEDTEST_SERVER`` and ``SPEEDTEST_CRON_SCHEDULE`` arguments in the [.env](.env) file to alter the server on which to perform the speed test. You can list servers with ``speedtest -L``. The default values are ``SPEEDTEST_SERVER=3199`` and ``SPEEDTEST_CRON_SCHEDULE="*/1 * * * *"``.
+The docker container ``telegraf`` uses the [exec input plugin][9] to execute the speedtest. Change the [telegraf.conf][10] file to adapt the speedtest config. Also check the [.env][11] file for setting the interval and used server for the speedtest. You can list servers with ``speedtest -L``.
 
-Thanks to @timokluser-dev for this PR.
+Thanks to @timokluser-dev for PR #7 and @Bedasek for Issue #9.
 
 ## ARM
 
@@ -44,6 +40,9 @@ docker-compose -f docker-compose.yaml -f docker-compose.arm.yaml up
 [3]: https://www.influxdata.com/time-series-platform/telegraf/
 [4]: https://www.influxdata.com/
 [5]: https://www.docker.com/
-[6]: https://www.speedtest.net/apps/cli
-[7]: speedtest/Dockerfile
+[6]: https://www.speedtest.net/apps/cli/
 [8]: https://blog.hypriot.com/
+[9]: https://github.com/influxdata/telegraf/blob/master/plugins/inputs/exec/
+[10]: telegraf/telegraf.conf
+[11]: .env
+[12]: https://github.com/influxdata/telegraf/blob/master/plugins/outputs/influxdb/
