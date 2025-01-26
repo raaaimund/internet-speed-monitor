@@ -24,7 +24,7 @@ Docker starts the following services
 
 The docker container ``telegraf`` uses the [exec input plugin][9] to execute the speedtest. Change the [telegraf.conf][10] file to adapt the speedtest config. Also check the [.env][11] file for setting the interval and used server for the speedtest. You can list servers with ``speedtest -L``.
 
-Thanks to @timokluser-dev for PR #7 and @Bedasek for Issue #9.
+Thanks to [@timokluser-dev][13] for [PR #7][15] and [@Bedasek][14] for [Issue #9][16].
 
 ## ARM
 
@@ -46,3 +46,7 @@ docker-compose -f docker-compose.yaml -f docker-compose.arm.yaml up
 [10]: telegraf/telegraf.conf
 [11]: .env
 [12]: https://github.com/influxdata/telegraf/blob/master/plugins/outputs/influxdb/
+[13]: https://github.com/timokluser-dev
+[14]: https://github.com/Bedasek
+[15]: https://github.com/raaaimund/internet-speed-monitor/pull/7
+[16]: https://github.com/raaaimund/internet-speed-monitor/issues/9
