@@ -2,13 +2,13 @@
 
 with [speedtest.net][1], [Grafana][2], [Telegraf][3], [InfluxDB][4] and [Docker][5].
 
-After running
+## Run
 
 ```bash
 docker-compose up
 ```
 
-Docker starts the following services
+## Docker services
 
 * ``influxdb``
   * store for the speed test results
@@ -17,7 +17,7 @@ Docker starts the following services
   * sends the result to influxdb using the [influxdb output plugin][12]
 * ``grafana``
   * visualizes the results on a simple pre-configured dashboard
-  * default credentials are **admin:admin**
+  * default credentials are **admin:admin** (if ``GF_AUTH_ANONYMOUS_ENABLED`` is set to ``false`` off in [.env][11] file)
   * dashboad is available on <http://localhost:3000/d/speedtest/speedtest>
 
 ## Adapt speedtest configuration

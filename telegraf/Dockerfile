@@ -1,6 +1,6 @@
-FROM telegraf:1.19.2
+FROM telegraf:1.33.1
 
-ARG DOCKERIZE_VERSION=v0.6.1
+ARG DOCKERIZE_VERSION=v0.9.2
 ARG DOCKERIZE_ARCH=amd64
 
 RUN apt update && apt install -y curl sudo

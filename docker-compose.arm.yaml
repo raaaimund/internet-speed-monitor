@@ -1,7 +1,6 @@
 services: 
-
     influxdb:
-        image: influxdb:1.8.10
+        image: arm64v8/influxdb:1.8.10
         privileged: true
 
     telegraf:
