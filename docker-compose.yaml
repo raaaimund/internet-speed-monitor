@@ -1,9 +1,6 @@
-version: '3'
 services: 
     influxdb:
-        image: influxdb:1.8-alpine
-        ports:
-            - '8086:8086'
+        image: influxdb:1.11-alpine
         volumes:
             - influxdb-storage:/var/lib/influxdb
         environment:
@@ -12,39 +9,30 @@ services:
             - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD}
         networks:
             - speedtest
-    speedtester:
-        build:
-            context: speedtest
-            args:
-                - SPEEDTEST_CRON_SCHEDULE=${SPEEDTEST_CRON_SCHEDULE}
-                - SPEEDTEST_SERVER=${SPEEDTEST_SERVER}
-        volumes:
-            - speedtest-storage:/var/log/speedtest
-        depends_on: 
-            - "influxdb"
-        networks:
-            - speedtest
     telegraf:
         build:
-            context: 'telegraf/.'
+            context: telegraf/.
             args:
-                DOCKERIZE_VERSION: v0.6.1
+                DOCKERIZE_VERSION: v0.9.2
                 DOCKERIZE_ARCH: amd64
         volumes:
-            - speedtest-storage:/var/log/speedtest
             - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+        environment:
+            - SPEEDTEST_INTERVAL=${SPEEDTEST_INTERVAL}
+            - SPEEDTEST_SERVER=${SPEEDTEST_SERVER}
         depends_on: 
-            - "influxdb"
+            - influxdb
         networks:
             - speedtest
     grafana:
-        build: 'grafana/.'
+        build: grafana/.
         ports:
-            - "3000:3000"
+            - 3000:3000
         volumes:
             - grafana-storage:/var/lib/grafana
         environment:
             - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL}
+            - GF_AUTH_ANONYMOUS_ENABLED=${GF_AUTH_ANONYMOUS_ENABLED}
         networks:
             - speedtest
 
@@ -53,5 +41,4 @@ networks:
 
 volumes:
     influxdb-storage:
-    speedtest-storage:
     grafana-storage:
